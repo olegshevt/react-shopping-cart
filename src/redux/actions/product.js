@@ -7,7 +7,7 @@ export const setLoaded = (payload) => ({
 
 export const fetchProduct = (sortBy, category) => (dispatch) => {
     dispatch(setLoaded(false));
-    axios.get(`/db.json/pizzas?${
+    axios.get(`https://react-shopping-cart-nine-weld.vercel.app/db.json/pizzas?${
         category !== null ? `category=${category}` : ''
         }&_sort=${sortBy.type}&_order=${sortBy.order}`,
     )
