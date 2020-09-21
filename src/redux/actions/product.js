@@ -1,22 +1,24 @@
 import axios from 'axios';
 
 export const setLoaded = (payload) => ({
-    type: 'SET_LOADED',
-    payload
+  type: 'SET_LOADED',
+  payload,
 });
 
 export const fetchProduct = (sortBy, category) => (dispatch) => {
-    dispatch(setLoaded(false));
-    axios.get(`/pizzas?${
+  dispatch(setLoaded(false));
+  axios
+    .get(
+      `https://coffee-shopping-cart.herokuapp.com/db.json/pizzas?${
         category !== null ? `category=${category}` : ''
-        }&_sort=${sortBy.type}&_order=${sortBy.order}`,
+      }&_sort=${sortBy.type}&_order=${sortBy.order}`,
     )
-        .then(({ data }) => {
-            dispatch(setProduct(data))
-        })
-}
+    .then(({ data }) => {
+      dispatch(setProduct(data));
+    });
+};
 
 export const setProduct = (items) => ({
-    type: 'SET_PRODUCT',
-    payload: items,
-})
+  type: 'SET_PRODUCT',
+  payload: items,
+});
